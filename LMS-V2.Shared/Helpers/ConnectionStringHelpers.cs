@@ -8,8 +8,7 @@ namespace LMS_V2.Shared.Helpers
     {
         public static string GetHerokuConnectionString()
         {
-            //string connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-            string connectionUrl = "postgres://swikjogljbafpk:659cfc26d22de03c94248ddc3b6293f15481ab11580baf72823d33aa5ae80242@ec2-52-30-159-47.eu-west-1.compute.amazonaws.com:5432/d17gep0hdnjjhm";
+            string connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
             var databaseUri = new Uri(connectionUrl);
 

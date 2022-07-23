@@ -30,16 +30,16 @@ namespace LMS_V2.API
         {
             //var IsDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
-            var dbConnectionString = ConnectionStringHelpers.GetHerokuConnectionString();
+            //var dbConnectionString = IsDevelopment ? Configuration.GetConnectionString("LMSDb-TEST-DB") : ConnectionStringHelpers.GetHerokuConnectionString();
 
-            services.AddDbContext<LMSDbContext>(options => options.UseNpgsql(dbConnectionString));
+            //services.AddDbContext<LMSDbContext>(options => options.UseNpgsql(dbConnectionString));
 
             services.AddControllers();
             services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, LMSDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -48,7 +48,7 @@ namespace LMS_V2.API
                 //app.UseSwaggerUI();
             }
 
-            dbContext.Database.Migrate();
+            //dbContext.Database.Migrate();
 
             app.UseSwagger();
             app.UseSwaggerUI();
