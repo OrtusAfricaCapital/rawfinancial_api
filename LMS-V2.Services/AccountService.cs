@@ -18,7 +18,7 @@ namespace LMS_V2.Services
         public Organisation Create(CreateOrganisationVM createOrganisation)
         {
             //check if email already registered or name
-            //register organisation and admin
+            //register organisation and admin 
             throw new NotImplementedException();
         }
 
