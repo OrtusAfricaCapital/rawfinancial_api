@@ -44,15 +44,14 @@ namespace LMS_V2.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                    options.RoutePrefix = string.Empty;
-                });
+                //app.UseSwagger();
+                //app.UseSwaggerUI();
             }
 
-            //dbContext.Database.Migrate();
+            dbContext.Database.Migrate();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
