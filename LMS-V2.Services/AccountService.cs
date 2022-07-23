@@ -9,11 +9,11 @@ namespace LMS_V2.Services
 {
     public class AccountService : IAccountService
     {
-        //private readonly LMSDbContext _dbContext;
-        //public AccountService(LMSDbContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
+        private readonly LMSDbContext _dbContext;
+        public AccountService(LMSDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public Organisation Create(CreateOrganisationVM createOrganisation)
         {
