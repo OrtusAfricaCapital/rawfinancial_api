@@ -8,7 +8,7 @@ namespace LMS_V2.Shared.Helpers
     {
         public static string GetHerokuConnectionString()
         {
-            string connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+            string connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL_RAW_FINANCIAL");
 
             var databaseUri = new Uri(connectionUrl);
 

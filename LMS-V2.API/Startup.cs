@@ -28,11 +28,7 @@ namespace LMS_V2.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var IsDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
-
-            var dbConnectionString = IsDevelopment ? Configuration.GetConnectionString("LMSDb-TEST-DB") : ConnectionStringHelpers.GetHerokuConnectionString();
-
-            services.AddDbContext<LMSDbContext>(options => options.UseNpgsql(dbConnectionString));
+            services.AddDbContext<LMSDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL_RAW_FINANCIAL")));
 
             services.AddControllers();
             services.AddSwaggerGen();
@@ -53,7 +49,7 @@ namespace LMS_V2.API
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
