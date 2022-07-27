@@ -20,5 +20,6 @@ namespace LMS_V2.Data.Models
 
         public int OrganisationId { get; set; }
         public Organisation Organisation { get; set; }
+        public DateTime CreatedOnUTC { get; set; }
     }
 }

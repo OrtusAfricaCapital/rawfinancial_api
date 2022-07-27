@@ -14,7 +14,6 @@ namespace LMS_V2.Data.Models
         public string WebAddress { get; set; }
         public string LogoUrl { get; set; }
         public string CountryCode { get; set; }
-
-        public List<Staff> Staffs { get; set; }
+        public DateTime CreatedOnUTC { get; set; }
     }
 }

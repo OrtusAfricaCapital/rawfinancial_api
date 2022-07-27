@@ -13,8 +13,5 @@ namespace LMS_V2.Shared.ViewModels
 
         //company details
         public string OrganisationName { get; set; }
-        public string LogoUrl { get; set; }
-        public string RegistrationNumber { get; set; }
-        public string WebAddress { get; set; }
     }
 }
