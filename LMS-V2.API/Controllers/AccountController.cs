@@ -35,7 +35,7 @@ namespace LMS_V2.API.Controllers
             return Ok(new
             {
                 Account = account.Item1,
-                Organisation = account.Item2
+                Tokens = account.Item2
             });
         }
 
@@ -47,10 +47,10 @@ namespace LMS_V2.API.Controllers
             try
             {
                 var account = _authenticationServce.CreateAccount(organisationVM);
-                return Ok(new
+                return new CreatedResult("/Account/create", new
                 {
                     Account = account.Item1,
-                    Organisation = account.Item2
+                    Tokens = account.Item2
                 });
             }
             catch(InvalidAccountExceptions exp)

@@ -35,6 +35,7 @@ namespace LMS_V2.API
         {
             services.AddDbContext<LMSDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL_RAW_FINANCIAL")));
 
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen();
 
@@ -77,6 +78,14 @@ namespace LMS_V2.API
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             app.UseRouting();
 
