@@ -59,7 +59,7 @@ namespace LMS_V2.API
                 };
             });
 
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAccountservice, AccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

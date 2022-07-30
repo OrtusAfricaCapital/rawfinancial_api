@@ -41,12 +41,43 @@ namespace LMS_V2.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("UpdatedOnUTC")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("WebAddress")
                         .HasColumnType("text");
 
                     b.HasKey("OrganisationId");
 
                     b.ToTable("Organisations");
+                });
+
+            modelBuilder.Entity("LMS_V2.Data.Models.OrganisationsStaff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreatedOnUTC")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("OrganisationId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedOnUTC")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganisationId");
+
+                    b.HasIndex("StaffId");
+
+                    b.ToTable("OrganisationsStaff");
                 });
 
             modelBuilder.Entity("LMS_V2.Data.Models.Staff", b =>
@@ -60,14 +91,10 @@ namespace LMS_V2.Data.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
                         .HasColumnType("text");
-
-                    b.Property<int>("OrganisationId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -78,21 +105,28 @@ namespace LMS_V2.Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<int>("StaffRole")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("UpdatedOnUTC")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("StaffId");
 
-                    b.HasIndex("OrganisationId");
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("LMS_V2.Data.Models.Staff", b =>
+            modelBuilder.Entity("LMS_V2.Data.Models.OrganisationsStaff", b =>
                 {
                     b.HasOne("LMS_V2.Data.Models.Organisation", "Organisation")
-                        .WithMany("Staffs")
+                        .WithMany("OrganisationsStaff")
                         .HasForeignKey("OrganisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LMS_V2.Data.Models.Staff", "Staff")
+                        .WithMany("OrganisationsStaff")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

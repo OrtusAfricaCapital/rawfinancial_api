@@ -13,6 +13,13 @@ namespace LMS_V2.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Staff>()
+                .HasIndex(s => s.Email)
+                .IsUnique();
+        }
+
         public DbSet<Organisation> Organisations { get; set; }
         public DbSet<Staff> Staffs { get; set; }
     }
